@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Data Reports</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='view_data.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Reports</h1>
+        <form method="get" id="graphForm">
+            <label for="graphSelect">Select a graph to view:</label>
+            <select id="graphSelect" name="graphSelect" onchange="showGraph()">
+                {% for plot_name, plot_image in plots.items() %}
+                <option value="{{ plot_name }}">{{ plot_name.replace('_', ' ').title() }}</option>
+                {% endfor %}
+            </select>
+        </form>
+
+        {% for plot_name, plot_image in plots.items() %}
+        <div id="{{ plot_name }}" style="display:none;">
+            <h2>{{ plot_name.replace('_', ' ').title() }}</h2>
+            <img src="data:image/png;base64, {{ plot_image }}" alt="{{ plot_name }}">
+        </div>
+        {% endfor %}
+        <button><a href="{{ url_for('auth.dashboard') }}">Back To Home Page</a></button>
+    </div>
+    <script>
+        function showGraph() {
+            const selectedGraph = document.getElementById("graphSelect").value;
+            document.querySelectorAll("div[id]").forEach(div => div.style.display = "none");
+            document.getElementById(selectedGraph).style.display = "block";
+        }
+    </script>
+</body>
+
+</html>

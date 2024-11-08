@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Dashboard</h2>
+        <p>Welcome, {{ current_user.username }}!</p>
+        
+        {% if current_user.role == 'administrator' %}
+            <ul>
+                <li><a href="{{ url_for('auth.manage_users') }}">Manage Users</a></li>
+                <li><a href="{{ url_for('auth.view_data') }}">View Reports</a></li>
+                <li><a href="{{ url_for('auth.upload_data') }}">Upload Data</a></li>
+            </ul>
+        {% elif current_user.role == 'developer' %}
+            <h3>Developer Actions</h3>
+            <ul>
+                <li><a href="{{ url_for('auth.view_data') }}">View Data</a></li>
+            </ul>
+        {% elif current_user.role == 'customer' %}
+            <h3>Customer Actions</h3>
+            <ul>
+                <li><a href="{{ url_for('auth.view_data') }}">View Data</a></li>
+            </ul>
+        {% endif %}
+        
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+    </div>
+</body>
+</html>

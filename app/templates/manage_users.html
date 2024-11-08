@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Manage Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>
+                        <form action="{{ url_for('auth.change_role', user_id=user.id) }}" method="POST" style="display: inline;">
+                            <select name="role">
+                                <option value="developer" {% if user.role == 'developer' %}selected{% endif %}>Developer</option>
+                                <option value="administrator" {% if user.role == 'administrator' %}selected{% endif %}>Administrator</option>
+                                <option value="customer" {% if user.role == 'customer' %}selected{% endif %}>Customer</option>
+                                
+                            </select>
+                            <button type="submit" class="btn btn-change-role">Change Role</button>
+                        </form>
+                        <a href="{{ url_for('auth.delete_user', user_id=user.id) }}" class="btn btn-delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button><a href="{{ url_for('auth.dashboard') }}">Back To Home Page</a></button>
+    </div>
+    
+</body>
+</html>

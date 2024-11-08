@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.container {
+    width: 800px; 
+    margin: 100px auto;
+    padding: 10px;
+    background-color: #6bbce4;
+    border-radius: 8px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+h2 {
+  
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+form {
+    display: flex;
+    flex-direction: column; 
+}
+
+label {
+    margin-bottom: 5px; 
+    font-weight: bold; 
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    transition: border-color 0.3s; 
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #1c2e16; 
+    outline: none; 
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #c2d58c; /* Primary color */
+    color: white;
+    border: none;
+    border-radius: 4px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+input[type="submit"]:hover {
+    background-color: #1c2d17; /* Darken button color on hover */
+}
+
+select{
+    padding: 10px;
+    margin-bottom: 15px; /* Space between inputs */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded corners for inputs */
+    transition: border-color 0.3s;
+}
+
+.error {
+    color: red; /* Error message color */
+    margin-bottom: 15px; /* Space below error message */
+}
+
+p {
+    text-align: center; /* Center the paragraph */
+}
+
+a {
+    color: #398ce6; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+    text-decoration: underline; /* Underline link on hover */
+}
